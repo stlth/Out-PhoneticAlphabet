@@ -1,5 +1,5 @@
 ﻿<#PSScriptInfo
-.VERSION 0.1.0
+.VERSION 0.2.0
 .GUID 2d10c0a1-6a5a-4cc5-876e-afd3feebc9e9
 .AUTHOR Cory Calahan
 .COMPANYNAME
@@ -46,44 +46,44 @@ function Out-PhoneticAlphabet
         $PSBoundParameters.GetEnumerator() | ForEach-Object { Write-Verbose -Message "$($PSItem)" }
 
         $nato = @{
-            '0'='(ZERO)'
-            '1'='(ONE)'
-            '2'='(TWO)'
-            '3'='(THREE)'
-            '4'='(FOUR)'
-            '5'='(FIVE)'
-            '6'='(SIX)'
-            '7'='(SEVEN)'
-            '8'='(EIGHT)'
-            '9'='(NINE)'
-            'a'='alfa'
-            'b'='bravo'
-            'c'='charlie'
-            'd'='delta'
-            'e'='echo'
-            'f'='foxtrot'
-            'g'='golf'
-            'h'='hotel'
-            'i'='india'
-            'j'='juliett'
-            'k'='kilo'
-            'l'='lima'
-            'm'='mike'
-            'n'='november'
-            'o'='oscar'
-            'p'='papa'
-            'q'='quebec'
-            'r'='romeo'
-            's'='sierra'
-            't'='tango'
-            'u'='uniform'
-            'v'='victor'
-            'w'='whiskey'
-            'x'='xray'
-            'y'='yankee'
-            'z'='zulu'
-            '.'='(POINT)'
-            '-'='(DASH)'
+            '0'=[PSCustomObject]@{PSOutputString='(ZERO)';Pronunciation='ZEE-RO';}
+            '1'=[PSCustomObject]@{PSOutputString='(ONE)';Pronunciation='WUN';}
+            '2'=[PSCustomObject]@{PSOutputString='(TWO)';Pronunciation='TOO';}
+            '3'=[PSCustomObject]@{PSOutputString='(THREE)';Pronunciation='TREE';}
+            '4'=[PSCustomObject]@{PSOutputString='(FOUR)';Pronunciation='FOW-ER';}
+            '5'=[PSCustomObject]@{PSOutputString='(FIVE)';Pronunciation='FIFE';}
+            '6'=[PSCustomObject]@{PSOutputString='(SIX)';Pronunciation='SIX';}
+            '7'=[PSCustomObject]@{PSOutputString='(SEVEN)';Pronunciation='SEV-EN';}
+            '8'=[PSCustomObject]@{PSOutputString='(EIGHT)';Pronunciation='AIT';}
+            '9'=[PSCustomObject]@{PSOutputString='(NINE)';Pronunciation='NIN-ER';}
+            'a'=[PSCustomObject]@{PSOutputString='alfa';Pronunciation='AL-FAH';}
+            'b'=[PSCustomObject]@{PSOutputString='bravo';Pronunciation='BRAH-VOH';}
+            'c'=[PSCustomObject]@{PSOutputString='charlie';Pronunciation='CHAR-LEE';}
+            'd'=[PSCustomObject]@{PSOutputString='delta';Pronunciation='DELL-TAH';}
+            'e'=[PSCustomObject]@{PSOutputString='echo';Pronunciation='ECK-OH';}
+            'f'=[PSCustomObject]@{PSOutputString='foxtrot';Pronunciation='FOKS-TROT';}
+            'g'=[PSCustomObject]@{PSOutputString='golf';Pronunciation='GOLF';}
+            'h'=[PSCustomObject]@{PSOutputString='hotel';Pronunciation='HOH-TEL';}
+            'i'=[PSCustomObject]@{PSOutputString='india';Pronunciation='IN-DEE-AH';}
+            'j'=[PSCustomObject]@{PSOutputString='juliett';Pronunciation='JEW-LEE-ETT';}
+            'k'=[PSCustomObject]@{PSOutputString='kilo';Pronunciation='KEY-LOH';}
+            'l'=[PSCustomObject]@{PSOutputString='lima';Pronunciation='LEE-MAH';}
+            'm'=[PSCustomObject]@{PSOutputString='mike';Pronunciation='MIKE';}
+            'n'=[PSCustomObject]@{PSOutputString='november';Pronunciation='NO-VEM-BER';}
+            'o'=[PSCustomObject]@{PSOutputString='oscar';Pronunciation='OSS-CAH';}
+            'p'=[PSCustomObject]@{PSOutputString='papa';Pronunciation='PAH-PAH';}
+            'q'=[PSCustomObject]@{PSOutputString='quebec';Pronunciation='KEH-BECK';}
+            'r'=[PSCustomObject]@{PSOutputString='romeo';Pronunciation='ROH-ME-OH';}
+            's'=[PSCustomObject]@{PSOutputString='sierra';Pronunciation='SEE-AIR-RAH';}
+            't'=[PSCustomObject]@{PSOutputString='tango';Pronunciation='TANG-GO';}
+            'u'=[PSCustomObject]@{PSOutputString='uniform';Pronunciation='YOU-NEE-FORM';}
+            'v'=[PSCustomObject]@{PSOutputString='victor';Pronunciation='VIK-TAH';}
+            'w'=[PSCustomObject]@{PSOutputString='whiskey';Pronunciation='WISS-KEY';}
+            'x'=[PSCustomObject]@{PSOutputString='xray';Pronunciation='ECKS-RAY';}
+            'y'=[PSCustomObject]@{PSOutputString='yankee';Pronunciation='YANG-KEY';}
+            'z'=[PSCustomObject]@{PSOutputString='zulu';Pronunciation='ZOO-LOO';}
+            '.'=[PSCustomObject]@{PSOutputString='(POINT)';Pronunciation='POINT';}
+            '-'=[PSCustomObject]@{PSOutputString='(DASH)';Pronunciation='DASH';}
         }
     } # END: BEGIN
     Process
@@ -103,28 +103,28 @@ function Out-PhoneticAlphabet
                     {
                         '\d'
                         {
-                            $sb.Append($nato.Get_Item("$character")) | Out-Null
+                            $sb.Append($nato.Get_Item("$character").PSOutputString) | Out-Null
                             break
                         }
                         '[a-z]'
                         {
-                            $sb.Append($nato.Get_Item("$character").ToLower()) | Out-Null
+                            $sb.Append($nato.Get_Item("$character").PSOutputString.ToLower()) | Out-Null
                             break
                         }
                         '[A-Z]'
                         {
                             
-                            $sb.Append($nato.Get_Item("$character").ToUpper()) | Out-Null
+                            $sb.Append($nato.Get_Item("$character").PSOutputString.ToUpper()) | Out-Null
                             break
                         }
                         '\.'
                         {
-                            $sb.Append($nato.Get_Item("$character")) | Out-Null
+                            $sb.Append($nato.Get_Item("$character").PSOutputString) | Out-Null
                             break
                         }
                         '\-'
                         {
-                            $sb.Append($nato.Get_Item("$character")) | Out-Null
+                            $sb.Append($nato.Get_Item("$character").PSOutputString) | Out-Null
                             break
                         }
                         Default {<# Nothing. #>}
