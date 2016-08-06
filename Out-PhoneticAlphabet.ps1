@@ -43,7 +43,7 @@ function Out-PhoneticAlphabet
     Begin
     {
         Write-Verbose -Message 'Listing Parameters utilized:'
-        $PSBoundParameters.GetEnumerator() | ForEach-Object { Write-Verbose -Message "$($PSItem)" }
+        $PSBoundParameters.GetEnumerator() | ForEach-Object -Process { Write-Verbose -Message "$($PSItem)" }
 
         $nato = @{
             '0'=[PSCustomObject]@{PSOutputString='(ZERO)';Pronunciation='ZEE-RO';}
